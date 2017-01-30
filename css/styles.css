@@ -1,0 +1,43 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+
+	margin: 0;
+	padding: 0;
+
+	overflow: hidden;
+}
+
+div#game-play-area {
+	background-color: rgba(0,255,255,0.5);
+
+	position: relative;
+}
+
+div#player {
+	background-color: #76ff03;
+
+	position: absolute;
+}
+
+div.enemy {
+	position: absolute;
+}
+
+div.enemy1 {
+	background-color: red;
+	border-radius: 50%;
+}
+
+div.enemy2 {
+	background-color: orange;
+	border-radius: 25%;
+}
+
+div.enemy3 {
+	background-color: yellow;
+}
+
