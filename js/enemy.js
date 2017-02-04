@@ -3,6 +3,7 @@ $(document).ready(function() {
 });
 
 function spawnEnemy() {
+	//TODO enemy types are hardcoded here, unscalable ):
 	var enemy = { type: 1, duration: enemyBaseSpeed+enemySpeedRange };
 
 	if (level == 1) enemy = { type: 1, duration: enemyBaseSpeed };
@@ -24,22 +25,22 @@ function createEnemy(type, enemyDuration) {
 	tempEnemy.style.left = (ENEMY_WIDTH * Math.floor(Math.random() * (MAP_WIDTH/PLAYER_WIDTH))) + "px";
 	tempEnemy.classList.add("enemy");
 
-	if (type == 1) tempEnemy.classList.add("enemy1");
-	else if (type == 2) tempEnemy.classList.add("enemy2");
-	else if (type == 3) tempEnemy.classList.add("enemy3");
+	if (type == TONY) tempEnemy.classList.add("tony");
+	else if (type == SPEEDY) tempEnemy.classList.add("speedy");
+	else if (type == BLINKY) tempEnemy.classList.add("blinky");
 
 	document.getElementById("game-play-area").appendChild(tempEnemy);
 
-	if (type == 1 || type == 3) {
+	if (type == TONY || type == BLINKY) {
 		var move = enemyMovement(enemyDuration);
 		$(tempEnemy).velocity(move.p, move.o);
 
-		if (type == 3) {
+		if (type == BLINKY) {
 			var fade = enemyFade(enemyDuration/4);
 			$(tempEnemy).velocity(fade.fadeOut.p, fade.fadeOut.o).velocity(fade.fadeIn.p, fade.fadeIn.o);
 		}
 	}
-	else if (type == 2) {
+	else if (type == SPEEDY) {
 		var move = enemyMovementSpecial(enemyDuration);
 
 		$(tempEnemy)

@@ -22,6 +22,10 @@ $("#player").css({
 	'left': playerPos
 });
 
+const TONY = 1;
+const SPEEDY = 2;
+const BLINKY = 3;
+
 const ENEMY_WIDTH = 50;
 const ENEMY_HEIGHT = 50;
 
@@ -37,7 +41,7 @@ const LEVEL_FIVE = 150; // type 3 only, medium
 const LEVEL_SIX = 175; // type 1 & 2 & 3, medium
 const LEVEL_SEVEN = 200; // type  1 & 2 & 3, random
 
-var enemyInterval = 500;
+var enemyInterval = 750;
 var score = 0;
 var level = 0;
 

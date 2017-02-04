@@ -33,7 +33,16 @@ function collisionDetection() {
 function updateScore() {
 	$("#scoreboard").text("Score: " + score);
 
-	if (score == LEVEL_ONE || score == LEVEL_TWO || score == LEVEL_THREE || score == LEVEL_FOUR || score == LEVEL_FIVE || score == LEVEL_SIX || score == LEVEL_SEVEN) level++;
+	if (score == LEVEL_ONE || score == LEVEL_TWO || score == LEVEL_THREE || score == LEVEL_FOUR || score == LEVEL_FIVE || score == LEVEL_SIX || score == LEVEL_SEVEN) levelUp();
+}
+
+function levelUp() {
+	level++;
+	if (level == 1) {
+		window.clearInterval(spawnTrigger);
+		setTimeout(function() { spawnTrigger = setInterval(spawnEnemy, enemyInterval); }, enemyBaseSpeed);
+	}
+	$("#levelboard").text("LEVEL " + level);
 }
 
 function death() {

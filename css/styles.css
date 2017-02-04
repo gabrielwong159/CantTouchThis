@@ -1,3 +1,8 @@
+@font-face {
+	font-family: arcade;
+	src: url('fonts/arcadeclassic.ttf');
+}
+
 html {
 	height: 100%;
 }
@@ -27,17 +32,27 @@ div.enemy {
 	position: absolute;
 }
 
-div.enemy1 {
+div.tony {
 	background-color: red;
 	border-radius: 50%;
 }
 
-div.enemy2 {
+div.speedy {
 	background-color: orange;
 	border-radius: 25%;
 }
 
-div.enemy3 {
+div.blinky {
 	background-color: yellow;
 }
 
+p#levelboard {
+	color: white;
+	text-align: center;
+	font-size: 32px;
+	font-family: arcade;
+	letter-spacing: 3px;
+
+	margin: 0;
+	padding-top: 50%;
+}
