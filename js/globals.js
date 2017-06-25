@@ -1,15 +1,28 @@
 const GAME_FPS = 30;
 
-const MAP_WIDTH = 300;
-const MAP_HEIGHT = 600;
+var MAP_WIDTH;
+var MAP_HEIGHT;
+
+var width = window.innerWidth;
+var height = window.innerHeight;
+
+if (width/height < 0.5) {
+	MAP_WIDTH = width;
+	MAP_HEIGHT = MAP_WIDTH * 2;
+}
+else {
+	MAP_HEIGHT = height;
+	MAP_WIDTH = MAP_HEIGHT/2;
+}
+
 
 $("#game-play-area").css({
 	'width': MAP_WIDTH,
 	'height': MAP_HEIGHT
 });
 
-const PLAYER_WIDTH = 50;
-const PLAYER_HEIGHT = 50;
+const PLAYER_WIDTH = MAP_WIDTH/6;
+const PLAYER_HEIGHT = PLAYER_WIDTH;
 
 var playerSpeed = 100;
 var playerPos = MAP_WIDTH/2;
@@ -26,8 +39,8 @@ const TONY = 1;
 const SPEEDY = 2;
 const BLINKY = 3;
 
-const ENEMY_WIDTH = 50;
-const ENEMY_HEIGHT = 50;
+const ENEMY_WIDTH = PLAYER_WIDTH;
+const ENEMY_HEIGHT = PLAYER_HEIGHT;
 
 var enemyBaseSpeed = 2000; //min fall duration
 var enemySpeedRange = 3000; //max fall duration = enemyBaseSpeed + enemySpeedRange

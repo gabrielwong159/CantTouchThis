@@ -12,8 +12,8 @@ document.addEventListener("keydown", function(event) {
 var $player = $("#player");
 
 function movePlayer(direction) {
-	if (direction == 'left' && playerPos>0) playerPos-= 50;
-	else if (direction == 'right' && playerPos < 250) playerPos+= 50;
+	if (direction == 'left' && playerPos>0) playerPos-= PLAYER_WIDTH;
+	else if (direction == 'right' && playerPos < MAP_WIDTH-PLAYER_WIDTH) playerPos+= PLAYER_WIDTH;
 
 	var move = playerMovement(playerPos);
 	$player.animate(move.p, move.o);

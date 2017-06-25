@@ -41,10 +41,11 @@ function createEnemy(type, enemyDuration) {
 		}
 	}
 	else if (type == SPEEDY) {
-		var move = enemyMovementSpecial(enemyDuration);
+		var move = enemyMovementSpeedy(enemyDuration);
 
 		$(tempEnemy)
 		.velocity(move.first.p, move.first.o)
+		.velocity(move.colour_activate.p, move.colour_activate.o)
 		.velocity(move.second.p, move.second.o)
 		.velocity(move.last.p, move.last.o);
 	}

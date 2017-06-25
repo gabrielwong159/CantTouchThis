@@ -39,7 +39,7 @@ function enemyMovement(enemyDuration) {
 	return animation;
 }
 
-function enemyMovementSpecial(enemyDuration) {
+function enemyMovementSpeedy(enemyDuration) {
 	var firstBound = MAP_HEIGHT/4;
 	var secondBound = firstBound*3 - ENEMY_HEIGHT;
 	var lastBound = MAP_HEIGHT;
@@ -54,6 +54,14 @@ function enemyMovementSpecial(enemyDuration) {
 				easing: "linear"
 			}
 		},
+		colour_activate: {
+			p: {
+				backgroundColorAlpha: 1
+			},
+			o: {
+				duration: 300
+			}
+		},
 		second: {
 			p: {
 				top: secondBound
@@ -65,7 +73,8 @@ function enemyMovementSpecial(enemyDuration) {
 		},
 		last: {
 			p: {
-				top: lastBound
+				top: lastBound,
+				backgroundColorAlpha: 0.5
 			},
 			o: {
 				duration: enemyDuration/2,

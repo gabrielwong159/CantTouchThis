@@ -38,7 +38,7 @@ div.tony {
 }
 
 div.speedy {
-	background-color: orange;
+	background-color: rgba(255,127,0,0.5);
 	border-radius: 25%;
 }
 
@@ -46,13 +46,25 @@ div.blinky {
 	background-color: yellow;
 }
 
-p#levelboard {
+p {
 	color: white;
-	text-align: center;
-	font-size: 32px;
 	font-family: arcade;
-	letter-spacing: 3px;
 
 	margin: 0;
+}
+
+p#scoreboard {
+	color: black;
+	text-align: right;
+	letter-spacing: 1px;
+
+	padding-right: 5px;
+}
+
+p#levelboard {
+	text-align: center;
+	font-size: 32px;
+	letter-spacing: 3px;
+
 	padding-top: 50%;
 }
