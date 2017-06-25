@@ -1,7 +1,8 @@
 $("#game").html( 
 	`<div id="game-play-area">
-		<p id="scoreboard">Score: 0</p>
+		<p id="scoreboard">0</p>
 		<p id="levelboard">LEVEL 0</p>
+		<p id="descriptionboard">Don't touch the falling blocks</p>
 		<div id="player" />
 	</div>'`);
 
@@ -52,14 +53,27 @@ const ENEMY_HEIGHT = PLAYER_HEIGHT;
 var enemyBaseSpeed = 2000; //min fall duration
 var enemySpeedRange = 3000; //max fall duration = enemyBaseSpeed + enemySpeedRange
 
-// level 0: type 1 only, slow
-const LEVEL_ONE = 25; // type 1 only, fast
-const LEVEL_TWO = 50; // type 2 only, medium
-const LEVEL_THREE = 75; // type 1 & 2, medium
-const LEVEL_FOUR = 125; // type 1 & 2, random
-const LEVEL_FIVE = 150; // type 3 only, medium
-const LEVEL_SIX = 175; // type 1 & 2 & 3, medium
-const LEVEL_SEVEN = 200; // type  1 & 2 & 3, random
+const LEVELS = [
+	-1, // level 0: type 1 only, slow
+	25, // level 1: type 1 only, fast
+	50, // level 2: type 2 only, medium
+	75, // level 3: type 1 & 2, medium
+	125, // level 4: type 1 & 2, random
+	150, // level 5: type 3 only, medium
+	175, // level 6: type 1 & 2 & 3, medium
+	200 // level: 7 type 1 & 2 & 3, random
+]
+
+const DESCRIPTIONS = [
+	"Don't touch the falling blocks", // 0
+	"Tutorial's over", // 1
+	"Here's a new block", // 2
+	"Practice time", // 3
+	"Practice time", // 4
+	"Watch out for Blinky", // 5
+	"GLHF", // 6
+	"GLHF" // 7
+];
 
 var enemyInterval = 750;
 var score = 0;

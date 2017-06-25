@@ -16,6 +16,8 @@ function spawnEnemy() {
 
 	createEnemy(enemy.type, enemy.duration);
 	enemiesSpawned++;
+
+	for (var i=1; i<LEVELS.length; i++) if (enemiesSpawned == LEVELS[i]) levelUp();
 }
 
 function createEnemy(type, enemyDuration) {

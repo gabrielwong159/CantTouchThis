@@ -31,25 +31,19 @@ function collisionDetection() {
 }
 
 function updateScore() {
-	$("#scoreboard").text("Score: " + score);
-
-	// tutorial stage (level 0) ends after enemiesSpawned, instead of score
-	if ((level == 0 && enemiesSpawned == LEVEL_ONE) || score == LEVEL_TWO || score == LEVEL_THREE || score == LEVEL_FOUR || score == LEVEL_FIVE || score == LEVEL_SIX || score == LEVEL_SEVEN) levelUp();
+	$("#scoreboard").text(score);
 }
 
 function updateLevel() {
 	$("#levelboard").text("LEVEL " + level);
-	// add animations
-	// add level description?
+	$("#descriptionboard").text(DESCRIPTIONS[level]);
+	// add animations for level text?
 }
 
 function levelUp() {
 	level++;
-	if (level == 1) {
-		window.clearInterval(spawnTrigger);
-		setTimeout(function() { spawnTrigger = setInterval(spawnEnemy, enemyInterval); updateLevel(); }, enemyBaseSpeed+enemySpeedRange);
-	}
-	else updateLevel();
+	window.clearInterval(spawnTrigger);
+	setTimeout(function() { spawnTrigger = setInterval(spawnEnemy, enemyInterval); updateLevel(); }, enemyBaseSpeed + enemySpeedRange/2);
 }
 
 function death() {

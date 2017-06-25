@@ -68,3 +68,11 @@ p#levelboard {
 
 	padding-top: 50%;
 }
+
+p#descriptionboard {
+	text-align: center;
+	font-size: 24px;
+	letter-spacing: 2px;
+
+	padding-top: 10%;
+}
