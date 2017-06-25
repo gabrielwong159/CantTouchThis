@@ -1,3 +1,10 @@
+$("#game").html( 
+	`<div id="game-play-area">
+		<p id="scoreboard">Score: 0</p>
+		<p id="levelboard">LEVEL 0</p>
+		<div id="player" />
+	</div>'`);
+
 const GAME_FPS = 30;
 
 var MAP_WIDTH;
@@ -56,6 +63,7 @@ const LEVEL_SEVEN = 200; // type  1 & 2 & 3, random
 
 var enemyInterval = 750;
 var score = 0;
+var enemiesSpawned = 0;
 var level = 0;
 
 var spawnTrigger = null;

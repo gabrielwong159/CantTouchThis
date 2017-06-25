@@ -15,6 +15,7 @@ function spawnEnemy() {
 	else if (level == 7) enemy = { type: Math.floor(Math.random()*3)+1, duration: enemyBaseSpeed + Math.floor(Math.random() * enemySpeedRange) };
 
 	createEnemy(enemy.type, enemy.duration);
+	enemiesSpawned++;
 }
 
 function createEnemy(type, enemyDuration) {
