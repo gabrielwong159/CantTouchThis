@@ -20,6 +20,7 @@ document.addEventListener("keydown", function(event) {
 });
 
 document.getElementById("game-play-area").addEventListener("click", function(event) {
+	event.preventDefault();
 	if (event.offsetX < (playerPos + PLAYER_WIDTH/2)) movePlayer('left');
 	else movePlayer('right');
 });

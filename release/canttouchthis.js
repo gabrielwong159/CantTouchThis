@@ -54,6 +54,14 @@ p {
 	font-family: arcade;
 
 	margin: 0;
+
+	cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 p#scoreboard {
@@ -70,14 +78,24 @@ p#levelboard {
 	letter-spacing: 3px;
 
 	padding-top: 50%;
+}
+
+p#descriptionboard {
+	text-align: center;
+	font-size: 24px;
+	letter-spacing: 2px;
+
+	padding-top: 10%;
 }`;
 
 document.body.appendChild(css);
 
+
 $("#game").html( 
 	`<div id="game-play-area">
-		<p id="scoreboard">Score: 0</p>
+		<p id="scoreboard">0</p>
 		<p id="levelboard">LEVEL 0</p>
+		<p id="descriptionboard">Don't touch the falling blocks</p>
 		<div id="player" />
 	</div>'`);
 
@@ -128,14 +146,27 @@ const ENEMY_HEIGHT = PLAYER_HEIGHT;
 var enemyBaseSpeed = 2000; //min fall duration
 var enemySpeedRange = 3000; //max fall duration = enemyBaseSpeed + enemySpeedRange
 
-// level 0: type 1 only, slow
-const LEVEL_ONE = 25; // type 1 only, fast
-const LEVEL_TWO = 50; // type 2 only, medium
-const LEVEL_THREE = 75; // type 1 & 2, medium
-const LEVEL_FOUR = 125; // type 1 & 2, random
-const LEVEL_FIVE = 150; // type 3 only, medium
-const LEVEL_SIX = 175; // type 1 & 2 & 3, medium
-const LEVEL_SEVEN = 200; // type  1 & 2 & 3, random
+const LEVELS = [
+	-1, // level 0: type 1 only, slow
+	25, // level 1: type 1 only, fast
+	50, // level 2: type 2 only, medium
+	75, // level 3: type 1 & 2, medium
+	125, // level 4: type 1 & 2, random
+	150, // level 5: type 3 only, medium
+	175, // level 6: type 1 & 2 & 3, medium
+	200 // level: 7 type 1 & 2 & 3, random
+]
+
+const DESCRIPTIONS = [
+	"Don't touch the falling blocks", // 0
+	"Tutorial's over", // 1
+	"Here's a new block", // 2
+	"Practice time", // 3
+	"Practice time", // 4
+	"Watch out for Blinky", // 5
+	"GLHF", // 6
+	"GLHF" // 7
+];
 
 var enemyInterval = 750;
 var score = 0;
@@ -146,6 +177,7 @@ var spawnTrigger = null;
 var collisionTrigger = null;
 
 var losted = false;
+
 
 function playerMovement(pos) {
 	var animation = {
@@ -290,16 +322,10 @@ var enemyDeath = {
 	}
 };
 
+
 var keys = {};
 keys.LEFT = 37;
 keys.RIGHT = 39;
-
-document.addEventListener("keydown", function(event) {
-	var keyCode = event.which;
-
-	if (keyCode == keys.LEFT) movePlayer('left');
-	if (keyCode == keys.RIGHT) movePlayer('right');
-});
 
 var $player = $("#player");
 
@@ -310,6 +336,20 @@ function movePlayer(direction) {
 	var move = playerMovement(playerPos);
 	$player.animate(move.p, move.o);
 }
+
+document.addEventListener("keydown", function(event) {
+	var keyCode = event.which;
+
+	if (keyCode == keys.LEFT) movePlayer('left');
+	if (keyCode == keys.RIGHT) movePlayer('right');
+});
+
+document.getElementById("game-play-area").addEventListener("click", function(event) {
+	event.preventDefault();
+	if (event.offsetX < (playerPos + PLAYER_WIDTH/2)) movePlayer('left');
+	else movePlayer('right');
+});
+
 
 $(document).ready(function() {
 	spawnTrigger = setInterval(spawnEnemy, enemyInterval);
@@ -329,6 +369,8 @@ function spawnEnemy() {
 
 	createEnemy(enemy.type, enemy.duration);
 	enemiesSpawned++;
+
+	for (var i=1; i<LEVELS.length; i++) if (enemiesSpawned == LEVELS[i]) levelUp();
 }
 
 function createEnemy(type, enemyDuration) {
@@ -373,6 +415,7 @@ function clearEnemy(obj) {
 	}
 }
 
+
 $(document).ready(function() {
 	collisionTrigger = setInterval(collisionDetection, 1000/GAME_FPS);
 });
@@ -406,25 +449,19 @@ function collisionDetection() {
 }
 
 function updateScore() {
-	$("#scoreboard").text("Score: " + score);
-
-	// tutorial stage (level 0) ends after enemiesSpawned, instead of score
-	if ((level == 0 && enemiesSpawned == LEVEL_ONE) || score == LEVEL_TWO || score == LEVEL_THREE || score == LEVEL_FOUR || score == LEVEL_FIVE || score == LEVEL_SIX || score == LEVEL_SEVEN) levelUp();
+	$("#scoreboard").text(score);
 }
 
 function updateLevel() {
 	$("#levelboard").text("LEVEL " + level);
-	// add animations
-	// add level description?
+	$("#descriptionboard").text(DESCRIPTIONS[level]);
+	// add animations for level text?
 }
 
 function levelUp() {
 	level++;
-	if (level == 1) {
-		window.clearInterval(spawnTrigger);
-		setTimeout(function() { spawnTrigger = setInterval(spawnEnemy, enemyInterval); updateLevel(); }, enemyBaseSpeed+enemySpeedRange);
-	}
-	else updateLevel();
+	window.clearInterval(spawnTrigger);
+	setTimeout(function() { spawnTrigger = setInterval(spawnEnemy, enemyInterval); updateLevel(); }, enemyBaseSpeed + enemySpeedRange/2);
 }
 
 function death() {
