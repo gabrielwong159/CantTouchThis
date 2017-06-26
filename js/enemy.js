@@ -1,7 +1,3 @@
-$(document).ready(function() {
-	spawnTrigger = setInterval(spawnEnemy, enemyInterval);
-});
-
 function spawnEnemy() {
 	//TODO enemy types are hardcoded here, unscalable ):
 	var enemy = { type: 1, duration: enemyBaseSpeed+enemySpeedRange };

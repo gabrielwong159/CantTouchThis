@@ -2,7 +2,7 @@ $("#game").html(
 	`<div id="game-play-area">
 		<p id="scoreboard">0</p>
 		<p id="levelboard">LEVEL 0</p>
-		<p id="descriptionboard">Don't touch the falling blocks</p>
+		<p id="descriptionboard">Click anywhere to start</p>
 		<div id="player" />
 	</div>'`);
 

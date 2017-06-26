@@ -18,9 +18,3 @@ document.addEventListener("keydown", function(event) {
 	if (keyCode == keys.LEFT) movePlayer('left');
 	if (keyCode == keys.RIGHT) movePlayer('right');
 });
-
-document.getElementById("game-play-area").addEventListener("click", function(event) {
-	event.preventDefault();
-	if (event.offsetX < (playerPos + PLAYER_WIDTH/2)) movePlayer('left');
-	else movePlayer('right');
-});

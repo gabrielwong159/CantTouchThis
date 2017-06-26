@@ -21,8 +21,11 @@ body {
 
 div#game-play-area {
 	background-color: rgba(0,255,255,0.5);
-
+	
 	position: relative;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 div#player {
@@ -95,7 +98,7 @@ $("#game").html(
 	`<div id="game-play-area">
 		<p id="scoreboard">0</p>
 		<p id="levelboard">LEVEL 0</p>
-		<p id="descriptionboard">Don't touch the falling blocks</p>
+		<p id="descriptionboard">Click anywhere to start</p>
 		<div id="player" />
 	</div>'`);
 
@@ -344,16 +347,6 @@ document.addEventListener("keydown", function(event) {
 	if (keyCode == keys.RIGHT) movePlayer('right');
 });
 
-document.getElementById("game-play-area").addEventListener("click", function(event) {
-	event.preventDefault();
-	if (event.offsetX < (playerPos + PLAYER_WIDTH/2)) movePlayer('left');
-	else movePlayer('right');
-});
-
-
-$(document).ready(function() {
-	spawnTrigger = setInterval(spawnEnemy, enemyInterval);
-});
 
 function spawnEnemy() {
 	//TODO enemy types are hardcoded here, unscalable ):
@@ -473,3 +466,24 @@ function death() {
 	window.clearInterval(spawnTrigger);
 	window.clearInterval(collisionTrigger);
 }
+
+
+function startGame() {
+	$gameArea = document.getElementById("game-play-area");
+	$gameArea.removeEventListener("click", startGame);
+	document.removeEventListener("keydown", startGame);
+
+	$gameArea.onclick = function(event) {
+		if (event.offsetX < (playerPos + PLAYER_WIDTH/2)) movePlayer("left");
+		else movePlayer("right");
+	}
+
+	updateLevel();
+	spawnTrigger = setInterval(spawnEnemy, enemyInterval);
+}
+
+
+$(document).ready(function() {
+	document.getElementById("game-play-area").addEventListener("click", startGame);
+	document.addEventListener("keydown", startGame);
+});
