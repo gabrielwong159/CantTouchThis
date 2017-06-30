@@ -23,6 +23,7 @@ div#game-play-area {
 	background-color: rgba(0,255,255,0.5);
 	
 	position: relative;
+	margin: 0 auto;
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -moz-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -98,7 +99,7 @@ $("#game").html(
 	`<div id="game-play-area">
 		<p id="scoreboard">0</p>
 		<p id="levelboard">LEVEL 0</p>
-		<p id="descriptionboard">Click anywhere to start</p>
+		<p id="descriptionboard">Press anything to start</p>
 		<div id="player" />
 	</div>'`);
 
@@ -118,7 +119,6 @@ else {
 	MAP_HEIGHT = height;
 	MAP_WIDTH = MAP_HEIGHT/2;
 }
-
 
 $("#game-play-area").css({
 	'width': MAP_WIDTH,
