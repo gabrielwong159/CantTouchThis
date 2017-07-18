@@ -19,6 +19,11 @@ body {
 	overflow: hidden;
 }
 
+div#game {
+	width: 100%;
+	height: 100%;
+}
+
 div#game-play-area {
 	background-color: rgba(0,255,255,0.5);
 	
@@ -53,7 +58,7 @@ div.blinky {
 	background-color: yellow;
 }
 
-p {
+p.game {
 	color: white;
 	font-family: arcade;
 
@@ -97,9 +102,9 @@ document.body.appendChild(css);
 
 $("#game").html( 
 	`<div id="game-play-area">
-		<p id="scoreboard">0</p>
-		<p id="levelboard">LEVEL 0</p>
-		<p id="descriptionboard">Press anything to start</p>
+		<p class="game" id="scoreboard">0</p>
+		<p class="game" id="levelboard">LEVEL 0</p>
+		<p class="game" id="descriptionboard">Press anything to start</p>
 		<div id="player" />
 	</div>'`);
 
@@ -108,8 +113,8 @@ const GAME_FPS = 30;
 var MAP_WIDTH;
 var MAP_HEIGHT;
 
-var width = window.innerWidth;
-var height = window.innerHeight;
+var width = $("#game").innerWidth();
+var height = $("#game").innerHeight();
 
 if (width/height < 0.5) {
 	MAP_WIDTH = width;
