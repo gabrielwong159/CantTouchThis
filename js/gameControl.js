@@ -54,4 +54,5 @@ function death() {
 
 	window.clearInterval(spawnTrigger);
 	window.clearInterval(collisionTrigger);
+	document.removeEventListener("keydown", playerKeydown);
 }

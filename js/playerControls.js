@@ -12,9 +12,10 @@ function movePlayer(direction) {
 	$player.animate(move.p, move.o);
 }
 
-document.addEventListener("keydown", function(event) {
+function playerKeydown(event) {
 	var keyCode = event.which;
 
 	if (keyCode == keys.LEFT) movePlayer('left');
-	if (keyCode == keys.RIGHT) movePlayer('right');
-});
+	if (keyCode == keys.RIGHT) movePlayer('right');	
+}
+document.addEventListener("keydown", playerKeydown);

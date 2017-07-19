@@ -1,10 +1,10 @@
-$("#game").html( 
-	`<div id="game-play-area">
-		<p class="game" id="scoreboard">0</p>
-		<p class="game" id="levelboard">LEVEL 0</p>
-		<p class="game" id="descriptionboard">Press anything to start</p>
-		<div id="player" />
-	</div>'`);
+ $("#game").html( 
+`<div id="game-play-area">
+	<p class="game" id="scoreboard">0</p>
+	<p class="game" id="levelboard">LEVEL 0</p>
+	<p class="game" id="descriptionboard">Press anything to start</p>
+	<div id="player" />
+</div>'`);
 
 const GAME_FPS = 30;
 

@@ -25,7 +25,7 @@ div#game {
 }
 
 div#game-play-area {
-	background-color: rgba(0,255,255,0.5);
+	background-color: rgb(127,255,255);
 	
 	position: relative;
 	margin: 0 auto;
@@ -100,13 +100,13 @@ p#descriptionboard {
 document.body.appendChild(css);
 
 
-$("#game").html( 
-	`<div id="game-play-area">
-		<p class="game" id="scoreboard">0</p>
-		<p class="game" id="levelboard">LEVEL 0</p>
-		<p class="game" id="descriptionboard">Press anything to start</p>
-		<div id="player" />
-	</div>'`);
+ $("#game").html( 
+`<div id="game-play-area">
+	<p class="game" id="scoreboard">0</p>
+	<p class="game" id="levelboard">LEVEL 0</p>
+	<p class="game" id="descriptionboard">Press anything to start</p>
+	<div id="player" />
+</div>'`);
 
 const GAME_FPS = 30;
 
@@ -345,12 +345,13 @@ function movePlayer(direction) {
 	$player.animate(move.p, move.o);
 }
 
-document.addEventListener("keydown", function(event) {
+function playerKeydown(event) {
 	var keyCode = event.which;
 
 	if (keyCode == keys.LEFT) movePlayer('left');
-	if (keyCode == keys.RIGHT) movePlayer('right');
-});
+	if (keyCode == keys.RIGHT) movePlayer('right');	
+}
+document.addEventListener("keydown", playerKeydown);
 
 
 function spawnEnemy() {
@@ -470,6 +471,7 @@ function death() {
 
 	window.clearInterval(spawnTrigger);
 	window.clearInterval(collisionTrigger);
+	document.removeEventListener("keydown", playerKeydown);
 }
 
 
@@ -488,7 +490,7 @@ function startGame() {
 }
 
 
-$(document).ready(function() {
+$("#game").ready(function() {
 	document.getElementById("game-play-area").addEventListener("click", startGame);
 	document.addEventListener("keydown", startGame);
 });

@@ -13,7 +13,7 @@ function startGame() {
 }
 
 
-$(document).ready(function() {
+$("#game").ready(function() {
 	document.getElementById("game-play-area").addEventListener("click", startGame);
 	document.addEventListener("keydown", startGame);
 });
