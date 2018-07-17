@@ -1,6 +1,8 @@
 # Can't Touch This!
 This is a mini-project for learning animations on Javascript using [Velocity.js](http://velocityjs.org/).
 
+[Play the game here!](http://canttouchthis.azurewebsites.net/)
+
 ## Installation
 To embed the game in a HTML file, copy the files in the [`/release`](https://github.com/gabrielwong159/CantTouchThis/tree/master/release) folder. Refer to [`index.html`](https://github.com/gabrielwong159/CantTouchThis/blob/master/release/index.html) for example.
 ### Steps for installation
